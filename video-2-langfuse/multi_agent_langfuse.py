@@ -1,3 +1,6 @@
+import sys
+import io
+
 import os
 from langfuse import Langfuse
 from langchain_openai import ChatOpenAI
@@ -5,6 +8,11 @@ from langsmith import uuid7
 
 from dotenv import load_dotenv
 load_dotenv()
+
+# Ensure UTF-8 encoding for stdin, stdout, and stderr
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8", errors="strict")
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="strict")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="strict")
 
 
 # 1) SETUP LANGFUSE
